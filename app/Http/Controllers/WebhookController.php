@@ -92,7 +92,10 @@ class WebhookController extends Controller
         $order->save();
         
         if($order->status === 'success'){
-
+            createPremiumAccess([
+                'user_id' => $order->user_id,
+                'course_id' => $order->course_id
+            ]);
         }
         
         return response()->json('Ok');
